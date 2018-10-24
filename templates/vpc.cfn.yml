@@ -1,7 +1,7 @@
 ---
 AWSTemplateFormatVersion: 2010-09-09
 
-Description: SASKV5N VPC
+Description: IITV1 VPC
 
 # This VPC stack should be created first before any other
 # CloudFormation stacks, such as a bastion stack, database
@@ -82,15 +82,15 @@ Mappings:
   # Maps CIDR blocks to VPC and various subnets
   CIDRMap:
     VPC:
-      CIDR: 10.50.0.0/16
+      CIDR: 172.16.0.0/16
     Public1:
-      CIDR: 10.50.0.0/24
+      CIDR: 172.16.0.0/24
     Public2:
-      CIDR: 10.50.1.0/24
+      CIDR: 172.16.1.0/24
     Private1:
-      CIDR: 10.50.64.0/19
+      CIDR: 172.16.4.0/22
     Private2:
-      CIDR: 10.50.96.0/19
+      CIDR: 172.16.8.0/22
 
 Resources:
 
@@ -307,14 +307,18 @@ Resources:
       GroupDescription: Enable access to the RDS DB
       VpcId: !Ref VPC
       SecurityGroupEgress:
-      - CidrIp: 0.0.0.0/0
+      - CidrIp: 0.0.0.0/0 # MySQL port configuration
         IpProtocol: tcp
         ToPort: 3306
         FromPort: 3306
-      - CidrIp: 0.0.0.0/0
+      - CidrIp: 0.0.0.0/0 # PostgreSQL port configuration
         IpProtocol: tcp
         ToPort: 5432
         FromPort: 5432
+      - CidrIp: 0.0.0.0/0 # MS SQL Server port configuration
+        IpProtocol: tcp
+        ToPort: 1433
+        FromPort: 1433
       Tags:
       - Key: Name
         Value: !Sub "${AWS::StackName}-DbSecurityGroup"
@@ -325,7 +329,7 @@ Resources:
       GroupId: !Ref DbSecurityGroup
       IpProtocol: tcp
       ToPort: 5432
-      FromPort: 3306
+      FromPort: 1433
       SourceSecurityGroupId: !Ref BastionSecurityGroup
 
   DbSecurityGroupFromAppIngress:
@@ -334,7 +338,7 @@ Resources:
       GroupId: !Ref DbSecurityGroup
       IpProtocol: tcp
       ToPort: 5432
-      FromPort: 3306
+      FromPort: 1433
       SourceSecurityGroupId: !Ref AppSecurityGroup
 
   # NAT-related resources
