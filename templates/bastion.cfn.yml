@@ -5,7 +5,7 @@ AWSTemplateFormatVersion: '2010-09-09'
 # bastion, see the following AWS blog post:
 # https://aws.amazon.com/blogs/security/securely-connect-to-linux-instances-running-in-a-private-amazon-vpc/
 
-Description: SASKV5N Bastion
+Description:  IITV1 Bastion
 
 
 Parameters:

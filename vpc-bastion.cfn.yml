@@ -2,14 +2,14 @@
 AWSTemplateFormatVersion: 2010-09-09
 
 
-Description: SASKV5 VPC + Bastion
+Description: IITV1 VPC + Bastion
 
 
 Parameters:
 
   TemplateBucket:
     Type: String
-    Default: awslabs-startup-kit-templates-deploy-v5
+    Default: integrait-template-v1
     Description: The template bucket for the CloudFormation templates
 
   AvailabilityZone1:
