@@ -1,7 +1,7 @@
 ---
 AWSTemplateFormatVersion: 2010-09-09
 
-Description: SASKV5N Aurora
+Description: IITV1 Aurora
 
 # Create the Aurora MySQL or PostgreSQL database(s). Currently, this template only supports alarms for Aurora MySQL.
 
@@ -67,13 +67,8 @@ Parameters:
     AllowedValues:
       - db.t2.small
       - db.t2.medium
+      - db.t2.large
       - db.t2.xlarge
-      - db.r4.large
-      - db.r4.xlarge
-      - db.r4.2xlarge
-      - db.r4.4xlarge
-      - db.r4.8xlarge
-      - db.r4.16xlarge
 
   EnvironmentName:
     Description: Environment name - dev or prod

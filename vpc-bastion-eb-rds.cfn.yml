@@ -2,14 +2,14 @@
 AWSTemplateFormatVersion: 2010-09-09
 
 
-Description: SASKV5 VPC + Bastion + Elastic Beanstalk + Database
+Description: IIT VPC + Bastion + Elastic Beanstalk + Database
 
 
 Parameters:
 
   TemplateBucket:
     Type: String
-    Default: awslabs-startup-kit-templates-deploy-v5
+    Default: integrait-templates-v1
     Description: The template bucket for the CloudFormation templates
 
   EnvironmentName:
@@ -118,15 +118,6 @@ Parameters:
       - m5.large
       - m5.xlarge
       - m5.2xlarge
-      - m5.4xlarge
-      - m5.12xlarge
-      - m5.24xlarge
-      - r4.large
-      - r4.xlarge
-      - r4.2xlarge
-      - r4.4xlarge
-      - r4.8xlarge
-      - r4.16xlarge
 
   SSLCertificateArn:
     Description: The optional SSL/TLS certificate ARN
@@ -223,15 +214,6 @@ Parameters:
       - db.m4.large
       - db.m4.xlarge
       - db.m4.2xlarge
-      - db.m4.4xlarge
-      - db.m4.10xlarge
-      - db.m4.16xlarge
-      - db.r4.large
-      - db.r4.xlarge
-      - db.r4.2xlarge
-      - db.r4.4xlarge
-      - db.r4.8xlarge
-      - db.r4.16xlarge
 
   DatabaseEnableAlarms:
     Default: false

@@ -1,6 +1,6 @@
 ---
 AWSTemplateFormatVersion: '2010-09-09'
-Description:  SASKV5N Elastic Beanstalk
+Description:  IITV1 Elastic Beanstalk
 
 # App stack creation prerequisites:  first create a VPC stack, then a DB stack.
 
@@ -87,14 +87,27 @@ Parameters:
     Type: String
     MinLength: 1
     MaxLength: 255
-    Default: t2.micro
+    Default: t3.micro
+    AllowedValues:
+      - t3.nano
+      - t3.micro
+      - t3.small
+      - t3.medium
 
   ProdInstanceType:
     Description: The instance type for the prod environment
     Type: String
     MinLength: 1
     MaxLength: 255
-    Default: t2.large
+    Default: t3.small
+    AllowedValues:
+      - t3.nano
+      - t3.micro
+      - t3.small
+      - t3.medium
+      - m5.large
+      - m5.xlarge
+      - m5.2xlarge
 
   SSLCertificateArn:
     Description: The SSL/TLS certificate ARN
