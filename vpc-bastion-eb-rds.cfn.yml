@@ -2,7 +2,7 @@
 AWSTemplateFormatVersion: 2010-09-09
 
 
-Description: IIT VPC + Bastion + Elastic Beanstalk + Database
+Description: IITV1 VPC + Bastion + Elastic Beanstalk + Database
 
 
 Parameters:
