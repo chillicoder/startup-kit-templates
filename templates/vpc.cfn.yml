@@ -350,6 +350,15 @@ Resources:
       FromPort: 3306
       SourceSecurityGroupId: !Ref BastionSecurityGroup
 
+  DbSecurityGroupFromBastionMSSqlServerIngress:
+    Type: AWS::EC2::SecurityGroupIngress
+    Properties:
+      GroupId: !Ref DbSecurityGroup
+      IpProtocol: tcp
+      ToPort: 1433
+      FromPort: 1433
+      SourceSecurityGroupId: !Ref BastionSecurityGroup
+
   DbSecurityGroupFromAppPostgreSqlIngress:
     Type: AWS::EC2::SecurityGroupIngress
     Properties:
@@ -366,6 +375,15 @@ Resources:
       IpProtocol: tcp
       ToPort: 3306
       FromPort: 3306
+      SourceSecurityGroupId: !Ref AppSecurityGroup
+
+  DbSecurityGroupFromAppMSSqlServerIngress:
+    Type: AWS::EC2::SecurityGroupIngress
+    Properties:
+      GroupId: !Ref DbSecurityGroup
+      IpProtocol: tcp
+      ToPort: 1433
+      FromPort: 1433
       SourceSecurityGroupId: !Ref AppSecurityGroup
 
   # NAT-related resources
