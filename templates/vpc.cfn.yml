@@ -292,16 +292,7 @@ Resources:
       FromPort: 22
       DestinationSecurityGroupId: !Ref AppSecurityGroup
 
-  BastionSecurityGroupToPostgreSqlDbEgress:
-    Type: AWS::EC2::SecurityGroupEgress
-    Properties:
-      GroupId: !Ref BastionSecurityGroup
-      IpProtocol: tcp
-      ToPort: 5432
-      FromPort: 5432
-      DestinationSecurityGroupId: !Ref DbSecurityGroup
-
-  BastionSecurityGroupToPostgreMySqlDbEgress:
+  BastionSecurityGroupToMySqlDbEgress:
     Type: AWS::EC2::SecurityGroupEgress
     Properties:
       GroupId: !Ref BastionSecurityGroup
@@ -320,22 +311,9 @@ Resources:
         IpProtocol: tcp
         ToPort: 3306
         FromPort: 3306
-      - CidrIp: 0.0.0.0/0
-        IpProtocol: tcp
-        ToPort: 5432
-        FromPort: 5432
       Tags:
       - Key: Name
         Value: !Sub "${AWS::StackName}-DbSecurityGroup"
-
-  DbSecurityGroupFromBastionPostgreSqlIngress:
-    Type: AWS::EC2::SecurityGroupIngress
-    Properties:
-      GroupId: !Ref DbSecurityGroup
-      IpProtocol: tcp
-      ToPort: 5432
-      FromPort: 5432
-      SourceSecurityGroupId: !Ref BastionSecurityGroup
 
   DbSecurityGroupFromBastionMySqlIngress:
     Type: AWS::EC2::SecurityGroupIngress
@@ -345,15 +323,6 @@ Resources:
       ToPort: 3306
       FromPort: 3306
       SourceSecurityGroupId: !Ref BastionSecurityGroup
-
-  DbSecurityGroupFromAppPostgreSqlIngress:
-    Type: AWS::EC2::SecurityGroupIngress
-    Properties:
-      GroupId: !Ref DbSecurityGroup
-      IpProtocol: tcp
-      ToPort: 5432
-      FromPort: 5432
-      SourceSecurityGroupId: !Ref AppSecurityGroup
 
   DbSecurityGroupFromAppMySqlIngress:
     Type: AWS::EC2::SecurityGroupIngress
